@@ -2,11 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load raw stock data
-df_raw = pd.read_csv('fetched_stock_data.csv')
+df_raw = pd.read_csv('data/fetched_stock_data.csv')
 df_raw['Date'] = pd.to_datetime(df_raw['Date'])
 
 # Load processed stock data (w/ technical indicators)
-df_processed = pd.read_csv('processed_stock_data.csv')
+df_processed = pd.read_csv('data/processed_stock_data.csv')
 df_processed['Date'] = pd.to_datetime(df_processed['Date'])
 
 # Set figure size

@@ -1,1 +1,5 @@
+data/
 myenv/
+.venv/
+.vscode/
+a.exe

@@ -7,8 +7,8 @@ from sklearn.metrics import classification_report, accuracy_score
 import matplotlib.pyplot as plt
 import joblib
 
-# Load your processed stock data
-data = pd.read_csv("processed_stock_data.csv")
+# Load processed stock data
+data = pd.read_csv("data/processed_stock_data.csv")
 
 # Drop any rows with missing values (if any)
 data.dropna(inplace=True)
@@ -43,19 +43,19 @@ cv_scores = cross_val_score(model, X_train_scaled, y_train, cv=5, scoring='accur
 print(f"Cross-validation scores: {cv_scores}")
 print(f"Mean cross-validation accuracy: {cv_scores.mean():.4f}")
 
-# Train the model on the entire training set after cross-validation
+# Train model on the entire training set after cross-validation
 model.fit(X_train_scaled, y_train)
 
-# Make predictions on the test set
+# Make predictions on test set
 y_pred = model.predict(X_test_scaled)
 
-# Evaluate the model's performance
+# Evaluate model's performance
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.4f}")
 
 # Display classification report
 print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
+print(classification_report(y_test, y_pred, zero_division=0))
 
 # Feature Importance Plot (Optional: helps in understanding model behavior)
 feature_importances = model.feature_importances_
@@ -65,9 +65,9 @@ plt.xlabel('Feature Importance')
 plt.title('Random Forest Feature Importance')
 plt.show()
 
-# Save the trained model to disk (optional, for later use)
-joblib.dump(model, "stock_price_prediction_model.pkl")
-print("\nModel saved to disk as 'stock_price_prediction_model.pkl'")
+# Save the trained model
+joblib.dump(model, "data/stock_price_prediction_model.pkl")
+print("\nModel saved to disk as 'data/stock_price_prediction_model.pkl'")
 
 # Final Prediction function (based on a new set of input features)
 def final_prediction(input_data):
@@ -77,7 +77,7 @@ def final_prediction(input_data):
     Output: 'Good Purchase' if predicted value is 1, 'Not a Good Purchase' if predicted value is 0
     """
     # Load the trained model (if not already in memory)
-    model = joblib.load("stock_price_prediction_model.pkl")
+    model = joblib.load("data/stock_price_prediction_model.pkl")
     
     # Ensure the input_data is a pandas DataFrame with the correct feature names
     input_df = pd.DataFrame([input_data], columns=['SMA', 'EMA', 'RSI', 'MACD', 'SignalLine'])

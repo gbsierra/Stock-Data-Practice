@@ -23,7 +23,7 @@ def fetch_stock_data(symbol: str, api_key: str):
         return None
 
 # Parse stock data and save it to CSV
-def parse_and_save_data(symbol: str, api_key: str, filename="fetched_stock_data.csv"):
+def parse_and_save_data(symbol: str, api_key: str, filename="data/fetched_stock_data.csv"):
     data = fetch_stock_data(symbol, api_key)
     if data and 'Time Series (Daily)' in data:
         df = pd.DataFrame.from_dict(data['Time Series (Daily)'], orient='index')

@@ -1,5 +1,5 @@
-#ifndef STOCKDATAHEADER_H
-#define STOCKDATAHEADER_H
+#ifndef STOCKDATA_H
+#define STOCKDATA_H
 
 #include <iostream>
 #include <fstream>
@@ -10,6 +10,15 @@
 #include <algorithm>
 
 class StockData {
+private:
+    std::string symbol;
+    std::vector<std::string> dates;
+    std::vector<double> openPrices, closePrices, highPrices, lowPrices, volumes;
+    std::vector<double> simpleMovingAverage, exponentialMovingAverage, rsi, macdLine, signalLine;
+
+    // Helper method for single EMA (Exponential Moving Average)
+    std::vector<double> calculateSingleEMA(const std::vector<double>& prices, int period);
+
 public:
     // Constructor
     StockData(const std::string& symbol);
@@ -29,10 +38,8 @@ public:
     std::vector<double> getMACDLine() const;
     std::vector<double> getSignalLine() const;
 
-    // Setter for symbol
+    // Mutators
     void setSymbol(const std::string& symbol);
-
-    // Mutator methods (add data to vectors)
     void addDate(const std::string& date);
     void addOpenPrice(double price);
     void addClosePrice(double price);
@@ -45,14 +52,13 @@ public:
     void preprocessData(); // Implement any preprocessing if needed
     void calculateBollingerBands(int period, double multiplier);
 
-
     // Methods to calculate indicators
-    void calculateEMA(int period); // Calculate Exponential Moving Average
-    void calculateRSI(int period); // Calculate Relative Strength Index
-    void calculateMACD();         // Calculate Moving Average Convergence Divergence
-    void calculateSMA(int period);
+    void calculateEMA(int period);  // Calculate Exponential Moving Average
+    void calculateRSI(int period);  // Calculate Relative Strength Index
+    void calculateMACD();           // Calculate Moving Average Convergence Divergence
+    void calculateSMA(int period);  // Calculate Simple Moving Average
 
-    // Method to plot data
+    // Methods to plot data
     void plotStockPrices() const;
     void plotIndicators() const;
 
@@ -60,15 +66,6 @@ public:
     void normalizeData();
     bool saveProcessedDataToCSV();
 
-
-private:
-    std::string symbol;
-    std::vector<std::string> dates;
-    std::vector<double> openPrices, closePrices, highPrices, lowPrices, volumes;
-    std::vector<double> simpleMovingAverage, exponentialMovingAverage, rsi, macdLine, signalLine;
-
-    // Helper method to calculate a single EMA (Exponential Moving Average)
-    std::vector<double> calculateSingleEMA(const std::vector<double>& prices, int period);
 };
 
-#endif // STOCKDATAHEADER_H
+#endif // STOCKDATA_H

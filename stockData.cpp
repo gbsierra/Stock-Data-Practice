@@ -1,4 +1,4 @@
-#include "stockDataHeader.h"
+#include "stockData.h"
 #include <fstream>
 #include <sstream>
 #include <numeric>
@@ -105,7 +105,6 @@ void StockData::addVolume(double volume) {
     volumes.push_back(volume);
 }
 
-//-----------------
 // Functions 
 //-----------------
 // calculate single moving average
@@ -136,6 +135,7 @@ std::vector<double> StockData::calculateSingleEMA(const std::vector<double>& pri
 
     return ema;
 }
+
 // calculate exponential moving average
 void StockData::calculateEMA(int period)
 {
@@ -301,7 +301,7 @@ void StockData::preprocessData()
 
 // saving data to csv
 bool StockData::saveProcessedDataToCSV() {
-    std::ofstream file("processed_stock_data.csv");
+    std::ofstream file("data/processed_stock_data.csv");
     if(!file){
         return false;
     }
