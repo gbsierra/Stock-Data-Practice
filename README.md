@@ -7,12 +7,12 @@ This project demonstrates integration of Object-Oriented Programming (OOP) in C+
 - Visualize data using Matplotlib in Python for graphical analysis.
 - Predict stock market trends with Scikit-learn, leveraging machine learning models.
 
-## Screenshots
+## Screenshots 📸
 ![Screenshot1](/screenshots/Screenshot1.png)
 ![Screenshot2](/screenshots/Screenshot2.png)  
 ![Screenshot3](/screenshots/Screenshot3.png)  
 
-## Installation 📸
+## Installation
 To get started, follow these simple steps:
 
 1. **Clone the Repository**  
@@ -34,7 +34,7 @@ Once you've installed the necessary dependencies, you're ready to run the progra
 ### 1. **Compile**
 
 ```sh
-g++ Main.cpp stockData.cpp
+g++ main.cpp stockData.cpp
 ```
 
 ### 2. **Execute**

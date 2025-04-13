@@ -48,7 +48,7 @@ bool loadDataFromCSV(StockData& stock, const std::string& filepath) {
 int main() {
     try {
         //Make a StockData instance with the symbol 'stockSymbol'
-        std::string stockSymbol = "AMD";
+        std::string stockSymbol = "AAPL";
         StockData stock(stockSymbol);
 
         // Call the Python script to fetch stock data and save it as CSV
